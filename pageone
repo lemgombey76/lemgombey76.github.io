@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Algebra Learning Path</title>
+  <style>
+    /* Basic Reset and Container Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+    /* Progress Indicator */
+    .progress {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    /* Standard Content Styling */
+    .standard {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    .standard h2 {
+      margin-top: 0;
+    }
+    /* Button Styling */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation: Progress Indicator -->
+    <div class="progress" id="progressIndicator">Standard 1 of 3</div>
+    <!-- Content: Standard Display -->
+    <div class="standard" id="standardContent">
+      <h2 id="standardTitle">Linear Equations</h2>
+      <p id="standardDescription">
+        Learn how to solve and graph linear equations, and understand the relationship between variables.
+      </p>
+    </div>
+    <!-- Navigation: Next Button -->
+    <button class="btn" id="nextButton">Next</button>
+  </div>
+
+  <script>
+    // Array of algebra standards with titles and descriptions
+    const standards = [
+      {
+        title: "Linear Equations",
+        description: "Learn how to solve and graph linear equations, and understand the relationship between variables."
+      },
+      {
+        title: "Quadratic Equations",
+        description: "Explore methods to solve quadratic equations, including factoring, completing the square, and using the quadratic formula."
+      },
+      {
+        title: "Systems of Equations",
+        description: "Understand how to solve systems of equations using substitution, elimination, and graphing methods."
+      }
+    ];
+
+    let currentIndex = 0;
+    const totalStandards = standards.length;
+
+    // DOM Elements
+    const progressIndicator = document.getElementById('progressIndicator');
+    const standardTitle = document.getElementById('standardTitle');
+    const standardDescription = document.getElementById('standardDescription');
+    const nextButton = document.getElementById('nextButton');
+
+    // Function to update the content based on the current index
+    function updateStandard() {
+      if (currentIndex < totalStandards) {
+        progressIndicator.textContent = "Standard " + (currentIndex + 1) + " of " + totalStandards;
+        standardTitle.textContent = standards[currentIndex].title;
+        standardDescription.textContent = standards[currentIndex].description;
+      } else {
+        // End of the learning path
+        progressIndicator.textContent = "You have completed the Algebra Learning Path!";
+        standardTitle.textContent = "";
+        standardDescription.textContent = "Congratulations on progressing through all the standards.";
+        nextButton.style.display = 'none';
+      }
+    }
+
+    // Event listener for the "Next" button
+    nextButton.addEventListener('click', function() {
+      currentIndex++;
+      updateStandard();
+    });
+  </script>
+</body>
+</html>
